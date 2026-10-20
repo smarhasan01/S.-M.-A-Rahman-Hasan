@@ -45,6 +45,13 @@
     border-color: rgba(140, 82, 255, 0.35);
     box-shadow: 0 10px 30px -10px rgba(109, 93, 252, 0.25);
   }
+  
+  /* GPU acceleration helper for 4GB RAM machines */
+  .gpu-accelerated {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 /* Subtle background grid */
@@ -53,4 +60,20 @@
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* 3D Tilt perspective container */
+.perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Respect user's reduced motion settings for accessibility & performance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

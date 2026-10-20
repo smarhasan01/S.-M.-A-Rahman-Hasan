@@ -10,6 +10,7 @@ import WorkExperience from './components/WorkExperience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectModal from './components/ProjectModal';
+import CustomCursor from './components/CustomCursor';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -45,11 +46,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#171719] text-[#e2e8f0] relative selection:bg-brand-purple selection:text-white">
-      {/* Global Background Glow Accents */}
+      {/* Custom Glowing Cursor & Purple Follow Spotlight */}
+      <CustomCursor />
+
+      {/* Global Background Glow Accents with Smooth GPU Drift */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-brand-purple/10 rounded-full blur-[180px]" />
-        <div className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[180px]" />
-        <div className="absolute bottom-1/4 -left-20 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[180px]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-brand-purple/10 rounded-full blur-[180px] animate-ambient-drift transform-gpu will-change-transform" />
+        <div className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[180px] animate-ambient-drift-rev transform-gpu will-change-transform" />
+        <div className="absolute bottom-1/4 -left-20 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[180px] animate-pulse-slow transform-gpu will-change-transform" />
       </div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
