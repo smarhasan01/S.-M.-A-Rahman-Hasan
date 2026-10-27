@@ -15,11 +15,9 @@ export default function Footer() {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Tools', href: '#tools' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Portfolio', href: '#portfolio' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -49,14 +47,17 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
-              Graphic Designer & UI/UX Designer dedicated to crafting purposeful visual identities, intuitive user experiences, and impactful brand communications.
+              {personalInfo.title} based in {personalInfo.location}. Dedicated to crafting purposeful visual identities, intuitive digital experiences, and impactful team workflows.
             </p>
 
             <div className="pt-1">
-              <span className="text-xs text-emerald-400 flex items-center gap-2">
+              <a
+                href={personalInfo.mailto}
+                className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-2 transition-colors"
+              >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Open for freelance inquiries & team roles</span>
-              </span>
+                <span>{personalInfo.email} &bull; Open for new projects</span>
+              </a>
             </div>
           </div>
 

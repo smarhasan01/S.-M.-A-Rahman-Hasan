@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Mail } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Tools', href: '#tools' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Portfolio', href: '#portfolio' },
   { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -58,12 +56,11 @@ export default function Navbar({ activeSection }) {
                 alt={personalInfo.name}
                 className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
-                  // Fallback stylish SVG logo mark if image fails
                   e.target.style.display = 'none';
                 }}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col text-left">
               <span className="font-display font-black tracking-wider text-white text-lg group-hover:text-brand-purple transition-colors">
                 {personalInfo.brandName}
               </span>
@@ -93,15 +90,16 @@ export default function Navbar({ activeSection }) {
             })}
           </nav>
 
-          {/* CTA Button & Mobile Toggle */}
+          {/* CTA Email Button & Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => handleNavClick('#contact')}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue hover:from-brand-violet hover:to-brand-deepPurple shadow-glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all"
+            <a
+              href="mailto:smarhasan.01@gmail.com"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue hover:from-brand-violet hover:to-brand-deepPurple shadow-glow-purple hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
             >
-              <span>Hire Me</span>
+              <Mail className="w-3.5 h-3.5" />
+              <span>Email Me</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
+            </a>
 
             {/* Mobile menu button */}
             <button
@@ -136,13 +134,14 @@ export default function Navbar({ activeSection }) {
             );
           })}
           <div className="pt-3">
-            <button
-              onClick={() => handleNavClick('#contact')}
+            <a
+              href="mailto:smarhasan.01@gmail.com"
               className="w-full py-2.5 rounded-xl text-center text-sm font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue shadow-glow-purple flex items-center justify-center gap-2"
             >
-              <span>Hire Me</span>
+              <Mail className="w-4 h-4" />
+              <span>Email Me (smarhasan.01@gmail.com)</span>
               <ArrowUpRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}

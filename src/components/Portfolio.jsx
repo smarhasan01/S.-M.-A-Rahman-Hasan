@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import { portfolioCategories, portfolioProjects } from '../data/portfolioData';
+import React from 'react';
+import { featuredProjects } from '../data/portfolioData';
 import ProjectCardVisual from './ProjectCardVisual';
-import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { Sparkles, ArrowUpRight, FolderGit2 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 
 export default function Portfolio({ onSelectProject }) {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects = activeCategory === "All"
-    ? portfolioProjects
-    : portfolioProjects.filter((p) => p.category === activeCategory);
-
   return (
-    <section id="portfolio" className="py-24 relative overflow-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      {/* Anchor for portfolio alias */}
+      <div id="portfolio" className="absolute -top-24 left-0 pointer-events-none" />
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-brand-purple/10 rounded-full blur-[140px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-blue/10 rounded-full blur-[140px] pointer-events-none animate-ambient-drift-rev transform-gpu will-change-transform" />
@@ -22,47 +18,25 @@ export default function Portfolio({ onSelectProject }) {
         
         {/* Section Header */}
         <ScrollReveal direction="up">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Creative Showcase</span>
+              <span>Selected Portfolio</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
-              Featured Portfolio Projects
+              Featured Design Projects
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-              A curated collection of branding, logo design, user interfaces, marketing creatives, and photorealistic mockups.
+              Real-world branding, promotional graphics, and UI design projects led and executed with precision.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Category Filters Pills with smooth hover */}
-        <ScrollReveal direction="up" delay={100}>
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mb-14">
-            {portfolioCategories.map((cat) => {
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 transform-gpu ${
-                    isActive
-                      ? 'text-white bg-gradient-to-r from-brand-purple to-brand-blue shadow-glow-purple scale-105'
-                      : 'text-zinc-400 hover:text-white bg-[#1e1e26] hover:bg-[#252532] hover:scale-105 active:scale-95 border border-white/5'
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-        </ScrollReveal>
-
-        {/* Projects Grid with 3D Tilt and ScrollReveal */}
+        {/* 3 Featured Projects Grid with 3D Tilt and ScrollReveal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <ScrollReveal key={project.id} direction="up" delay={100 * (index % 3 + 1)}>
-              <TiltCard maxTilt={8} scale={1.02} className="h-full rounded-3xl">
+          {featuredProjects.map((project, index) => (
+            <ScrollReveal key={project.id} direction="up" delay={120 * (index + 1)}>
+              <TiltCard maxTilt={7} scale={1.02} className="h-full rounded-3xl">
                 <div
                   onClick={() => onSelectProject(project)}
                   className="group cursor-pointer rounded-3xl bg-[#1b1b22] border border-white/8 hover:border-brand-purple/50 shadow-xl overflow-hidden transition-all duration-300 flex flex-col justify-between h-full"
@@ -78,7 +52,7 @@ export default function Portfolio({ onSelectProject }) {
                     {/* Overlay hover prompt */}
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                       <span className="px-4 py-2 rounded-xl bg-white text-zinc-900 text-xs font-bold shadow-lg flex items-center gap-1.5 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                        <span>View Case Study</span>
+                        <span>View Project Details</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
@@ -95,8 +69,8 @@ export default function Portfolio({ onSelectProject }) {
                   <div className="p-6 text-left flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between text-xs text-zinc-400 mb-2 font-mono">
-                        <span>{project.client}</span>
-                        <span>{project.year}</span>
+                        <span className="text-brand-purple font-medium">{project.organization}</span>
+                        <span>{project.duration}</span>
                       </div>
 
                       <h3 className="text-lg font-bold font-display text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
@@ -108,15 +82,15 @@ export default function Portfolio({ onSelectProject }) {
                       </p>
                     </div>
 
-                    {/* Tags row & CTA */}
+                    {/* Tools and Details Trigger */}
                     <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
                       <div className="flex flex-wrap gap-1.5 max-w-[70%]">
-                        {project.tags.slice(0, 2).map((tag, idx) => (
+                        {project.tools.slice(0, 2).map((tool, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 rounded text-[10px] bg-white/5 text-zinc-400"
+                            className="px-2 py-0.5 rounded text-[10px] bg-white/5 text-zinc-400 font-mono"
                           >
-                            {tag}
+                            {tool}
                           </span>
                         ))}
                       </div>
@@ -133,12 +107,24 @@ export default function Portfolio({ onSelectProject }) {
           ))}
         </div>
 
-        {/* Footer note */}
+        {/* Call to action note */}
         <ScrollReveal direction="fade" delay={300}>
-          <div className="mt-16 text-center">
-            <p className="text-xs text-zinc-400">
-              Have a project in mind? All designs can be customized to match your brand requirements.
-            </p>
+          <div className="mt-14 p-6 rounded-2xl bg-[#1b1b22]/60 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto text-left">
+            <div>
+              <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                <FolderGit2 className="w-4 h-4 text-brand-purple" />
+                <span>Need a customized design solution for your brand or product?</span>
+              </h4>
+              <p className="text-xs text-zinc-400 mt-0.5">
+                Available for branding, marketing collaterals, website UI design, and creative direction.
+              </p>
+            </div>
+            <a
+              href="mailto:smarhasan.01@gmail.com"
+              className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue hover:shadow-glow-purple hover:scale-105 active:scale-95 transition-all flex-shrink-0"
+            >
+              Get in Touch
+            </a>
           </div>
         </ScrollReveal>
 

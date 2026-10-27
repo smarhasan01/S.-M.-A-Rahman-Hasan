@@ -1,24 +1,27 @@
 import React from 'react';
-import { Sparkles, Eye, Layers, Compass, ArrowRight } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { Sparkles, Palette, Layout, Users, Mail, ArrowRight } from 'lucide-react';
+import { personalInfo, aboutContent } from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 
-const values = [
+const pillars = [
   {
-    icon: Eye,
-    title: "Visual Communication",
-    description: "Translating complex ideas into compelling visual stories that resonate instantly with audiences.",
+    icon: Palette,
+    title: "Graphic Design & Branding",
+    description: "Visual identity, print assets, marketing collaterals, and spatial branding solutions tailored for commercial impact.",
+    color: "#a855f7"
   },
   {
-    icon: Layers,
-    title: "User-Centered UI/UX",
-    description: "Designing digital interfaces that balance modern aesthetics with effortless, intuitive functionality.",
+    icon: Layout,
+    title: "UI/UX & Website Design",
+    description: "Modern, responsive website interface design focused on clear visual hierarchy, usability, and intuitive user experiences.",
+    color: "#3b82f6"
   },
   {
-    icon: Compass,
-    title: "Distinctive Branding",
-    description: "Creating recognizable, scalable identity systems from memorable logomarks to cohesive design tokens.",
+    icon: Users,
+    title: "Design Leadership & Training",
+    description: "Leading document preparation workflows, mentoring students in graphic design, and guiding team project execution.",
+    color: "#10b981"
   },
 ];
 
@@ -29,7 +32,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden bg-[#161619]">
       {/* Background ambient accents */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
 
@@ -43,10 +46,10 @@ export default function About() {
               <span>About Me</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
-              Crafting Visual Stories & <span className="bg-gradient-to-r from-brand-purple via-indigo-400 to-brand-blue bg-clip-text text-transparent">Meaningful Experiences</span>
+              Design Philosophy & <span className="bg-gradient-to-r from-brand-purple via-indigo-400 to-brand-blue bg-clip-text text-transparent">Creative Journey</span>
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-              I am a creative designer driven by passion for visual communication, modern branding, and clean digital product design.
+              Graphic Designer, UI/UX Designer, and Design Team Leader based in Bangladesh.
             </p>
           </div>
         </ScrollReveal>
@@ -54,40 +57,47 @@ export default function About() {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left: Bio & Highlights */}
+          {/* Left: Bio & Professional Pillars */}
           <div className="lg:col-span-7 space-y-6 text-left">
             <ScrollReveal direction="up" delay={100}>
-              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">
-                Hello! I'm <span className="text-indigo-400">S. M. A. Rahman Hasan</span>, based in Bangladesh & working with clients globally.
+              <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight leading-snug">
+                Creative Solutions Through Visual Communication & Purposeful Design
               </h3>
             </ScrollReveal>
 
+            {/* Exact About Text requested by user */}
             <ScrollReveal direction="up" delay={200}>
-              <p className="text-zinc-300 text-base leading-relaxed">
-                With a strong background in both <span className="text-white font-medium">Graphic Design</span> and <span className="text-white font-medium">UI/UX Design</span>, I bridge the gap between creative visual artistry and functional product experiences. Whether crafting a bold new brand identity, designing responsive mobile interfaces, or developing high-converting marketing collaterals, my approach is grounded in clarity, purpose, and attention to detail.
+              <p className="text-zinc-300 text-base sm:text-lg leading-relaxed bg-[#1b1b22]/70 p-6 rounded-2xl border border-white/5">
+                {aboutContent.paragraph}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={250}>
-              <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
-                Every design decision I make is intentional—focusing on visual hierarchy, accessibility, typography balance, and brand consistency that leaves a lasting impression on users and drives measurable results for businesses.
-              </p>
-            </ScrollReveal>
-
-            {/* Core Values / Strengths List with 3D Tilt */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-              {values.map((v, i) => {
-                const Icon = v.icon;
+            {/* Three Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              {pillars.map((p, i) => {
+                const Icon = p.icon;
                 return (
                   <ScrollReveal key={i} direction="up" delay={300 + i * 100}>
-                    <TiltCard maxTilt={8} scale={1.03} className="h-full rounded-2xl">
+                    <TiltCard maxTilt={6} scale={1.02} className="h-full rounded-2xl">
                       <div className="p-4 rounded-2xl bg-[#1b1b22]/90 border border-white/5 hover:border-brand-purple/40 shadow-lg transition-all duration-300 group h-full flex flex-col justify-between">
                         <div>
-                          <div className="w-10 h-10 rounded-xl bg-brand-purple/10 border border-brand-purple/20 flex items-center justify-center text-brand-purple group-hover:scale-110 group-hover:bg-brand-purple group-hover:text-white transition-all duration-300">
+                          <div
+                            className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                            style={{
+                              backgroundColor: `${p.color}15`,
+                              borderColor: `${p.color}35`,
+                              borderWidth: '1px',
+                              color: p.color
+                            }}
+                          >
                             <Icon className="w-5 h-5" />
                           </div>
-                          <h4 className="text-sm font-bold text-white mt-3 group-hover:text-indigo-300 transition-colors">{v.title}</h4>
-                          <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{v.description}</p>
+                          <h4 className="text-sm font-bold text-white mt-3 group-hover:text-indigo-300 transition-colors">
+                            {p.title}
+                          </h4>
+                          <p className="text-xs text-zinc-400 mt-1.5 leading-relaxed">
+                            {p.description}
+                          </p>
                         </div>
                       </div>
                     </TiltCard>
@@ -97,65 +107,62 @@ export default function About() {
             </div>
 
             {/* Quick Actions */}
-            <ScrollReveal direction="up" delay={600}>
+            <ScrollReveal direction="up" delay={550}>
               <div className="pt-4 flex flex-wrap gap-4 items-center">
-                <button
-                  onClick={() => scrollTo('#portfolio')}
+                <a
+                  href="mailto:smarhasan.01@gmail.com"
                   className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue hover:shadow-glow-purple hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 group"
                 >
-                  <span>Explore My Work</span>
+                  <Mail className="w-4 h-4" />
+                  <span>Send an Email</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-                </button>
+                </a>
 
                 <button
-                  onClick={() => scrollTo('#contact')}
+                  onClick={() => scrollTo('#experience')}
                   className="px-6 py-3 rounded-xl text-sm font-medium text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 hover:border-brand-purple/40 hover:scale-105 active:scale-95 border border-white/10 transition-all duration-300"
                 >
-                  Get In Touch
+                  View Experience Timeline
                 </button>
               </div>
             </ScrollReveal>
 
           </div>
 
-          {/* Right: Stats Counter Grid with 3D Tilt */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            {personalInfo.stats.map((stat, idx) => (
-              <ScrollReveal key={idx} direction="up" delay={200 + idx * 100}>
-                <TiltCard maxTilt={8} scale={1.03} className="h-full rounded-2xl">
-                  <div className="p-6 rounded-2xl bg-[#1b1b24]/90 border border-white/5 hover:border-brand-purple/40 shadow-xl transition-all duration-300 text-center group relative overflow-hidden h-full flex flex-col justify-center">
-                    <div className="absolute -right-8 -top-8 w-24 h-24 bg-brand-purple/10 rounded-full blur-xl group-hover:bg-brand-purple/30 transition-all duration-500 pointer-events-none" />
-                    
-                    <div className="text-4xl sm:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-indigo-200 to-brand-purple tracking-tight group-hover:scale-105 transition-transform duration-300">
-                      {stat.value}
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium text-zinc-400 mt-2">
-                      {stat.label}
+          {/* Right: Actual Profile Picture Showcase in About Section */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <ScrollReveal direction="up" delay={250}>
+              <TiltCard maxTilt={6} scale={1.01} className="w-full max-w-sm rounded-3xl">
+                <div className="relative p-2.5 rounded-3xl bg-gradient-to-b from-brand-purple/30 via-white/5 to-brand-blue/20 backdrop-blur-sm border border-brand-purple/40 shadow-2xl overflow-hidden group">
+                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#141419]">
+                    <img
+                      src={personalInfo.profileImage}
+                      alt={personalInfo.name}
+                      onError={(e) => {
+                        if (e.currentTarget.src !== personalInfo.profileImageFallback) {
+                          e.currentTarget.src = personalInfo.profileImageFallback;
+                        }
+                      }}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#141419] via-[#141419]/70 to-transparent p-4 flex flex-col justify-end text-left">
+                      <span className="text-white font-bold text-base block font-display">
+                        {personalInfo.name}
+                      </span>
+                      <span className="text-xs text-indigo-300 font-mono block">
+                        Graphic & UI/UX Designer • Team Leader
+                      </span>
                     </div>
                   </div>
-                </TiltCard>
-              </ScrollReveal>
-            ))}
+                </div>
+              </TiltCard>
+            </ScrollReveal>
 
-            {/* Design Philosophy Card */}
-            <div className="col-span-2">
-              <ScrollReveal direction="up" delay={550}>
-                <TiltCard maxTilt={5} scale={1.01} className="rounded-2xl">
-                  <div className="p-6 rounded-2xl bg-gradient-to-r from-[#211f32] to-[#1a1b29] border border-brand-purple/30 shadow-lg text-left relative overflow-hidden">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                        ✓
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-white">Client-Centered Workflow</h4>
-                        <p className="text-xs text-zinc-400 mt-0.5">Iterative feedback, clear timelines & transparent communication</p>
-                      </div>
-                    </div>
-                  </div>
-                </TiltCard>
-              </ScrollReveal>
+            {/* Quick Location badge under picture */}
+            <div className="mt-4 flex items-center gap-2 text-xs text-zinc-400 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Based in Bangladesh • Open to Collaborations</span>
             </div>
-
           </div>
 
         </div>

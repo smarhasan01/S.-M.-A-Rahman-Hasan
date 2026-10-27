@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { personalInfo } from '../data/portfolioData';
-import { Mail, MapPin, Send, Check, Copy, Sparkles, Clock } from 'lucide-react';
+import { Mail, MapPin, Send, Check, Copy, Sparkles, Clock, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
@@ -48,7 +48,6 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Simulate API dispatch
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -59,7 +58,7 @@ export default function Contact() {
         spread: 70,
         origin: { y: 0.6 }
       });
-    }, 1000);
+    }, 600);
   };
 
   return (
@@ -74,15 +73,15 @@ export default function Contact() {
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Let's Collaborate</span>
+              <span>Get In Touch</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
-              Ready to Start Your <span className="bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent">Next Design Project?</span>
+              Let's Discuss Your <span className="bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent">Next Project</span>
             </h2>
 
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-              Have an exciting idea, brand inquiry, or opening on your team? Send a message and let's craft something exceptional together.
+              Ready to collaborate on graphic design, UI/UX design, or team projects? Reach out directly via email or send a message below.
             </p>
           </div>
         </ScrollReveal>
@@ -92,39 +91,42 @@ export default function Contact() {
           {/* Left Column: Direct Info & Social Cards */}
           <div className="lg:col-span-5 space-y-6 text-left">
             
-            {/* Email Card with 1-click Copy */}
+            {/* Email Card with 1-click Copy & exact mailto link */}
             <ScrollReveal direction="up" delay={150}>
               <TiltCard maxTilt={5} scale={1.01} className="rounded-2xl">
                 <div className="p-6 rounded-2xl bg-[#1b1b22] border border-white/8 hover:border-brand-purple/40 shadow-xl transition-all">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono uppercase tracking-wider text-brand-purple flex items-center gap-1.5">
+                    <span className="text-xs font-mono uppercase tracking-wider text-brand-purple flex items-center gap-1.5 font-bold">
                       <Mail className="w-4 h-4" />
                       <span>Direct Email</span>
                     </span>
-                    <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                      Open for Opportunities
+                    <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-medium">
+                      Open to Inquiries
                     </span>
                   </div>
 
-                  <div className="text-lg font-bold text-white break-all">
+                  <div className="text-lg sm:text-xl font-bold text-white break-all font-mono">
                     {personalInfo.email}
                   </div>
 
-                  <div className="mt-4 flex items-center gap-3">
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    {/* Exact required HTML link */}
+                    <a
+                      href="mailto:smarhasan.01@gmail.com"
+                      className="px-5 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-glow-purple hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 group"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Email Me (mailto:smarhasan.01@gmail.com)</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </a>
+
                     <button
                       onClick={handleCopyEmail}
-                      className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 hover:scale-105 active:scale-95 text-zinc-300 hover:text-white border border-white/10 flex items-center gap-2 transition-all duration-300"
+                      className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 hover:scale-105 active:scale-95 text-zinc-300 hover:text-white border border-white/10 flex items-center gap-2 transition-all duration-300"
                     >
                       {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copied ? 'Copied to Clipboard!' : 'Copy Email Address'}</span>
+                      <span>{copied ? 'Copied!' : 'Copy'}</span>
                     </button>
-
-                    <a
-                      href={`mailto:${personalInfo.email}`}
-                      className="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-purple/20 hover:bg-brand-purple/30 hover:scale-105 active:scale-95 text-indigo-300 border border-brand-purple/30 transition-all duration-300"
-                    >
-                      Open Mail Client
-                    </a>
                   </div>
                 </div>
               </TiltCard>
@@ -139,12 +141,12 @@ export default function Contact() {
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-white">Location & Timezone</h4>
+                      <h4 className="text-sm font-bold text-white">Location</h4>
                       <p className="text-xs text-zinc-400">{personalInfo.location}</p>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 flex items-center gap-2 text-xs text-zinc-400">
+                  <div className="pt-3 border-t border-white/5 flex items-center gap-2 text-xs text-zinc-400 font-mono">
                     <Clock className="w-3.5 h-3.5 text-brand-purple" />
                     <span>Response rate: Typically within 24 hours</span>
                   </div>
@@ -155,13 +157,13 @@ export default function Contact() {
             {/* Social Links List */}
             <ScrollReveal direction="up" delay={350}>
               <div className="p-6 rounded-2xl bg-[#1b1b22] border border-white/8 shadow-xl">
-                <h4 className="text-sm font-bold text-white mb-4">Connect on Social Platforms</h4>
+                <h4 className="text-sm font-bold text-white mb-4">Official Profiles & Socials</h4>
                 <div className="flex flex-wrap gap-2.5">
                   {personalInfo.socialLinks.map((social) => (
                     <a
                       key={social.name}
                       href={social.url}
-                      target="_blank"
+                      target={social.url.startsWith('mailto:') ? '_self' : '_blank'}
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#22222b] hover:bg-brand-purple text-zinc-300 hover:text-white hover:scale-105 active:scale-95 border border-white/5 hover:border-brand-purple transition-all duration-300"
                     >
@@ -185,20 +187,28 @@ export default function Contact() {
                       <Check className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl font-bold font-display text-white">
-                      Message Dispatched Successfully!
+                      Message Prepared Successfully!
                     </h3>
                     <p className="text-sm text-zinc-400 max-w-md mx-auto leading-relaxed">
-                      Thank you, <span className="text-white font-medium">{formData.name}</span>! S. M. A. Rahman Hasan will review your inquiry and get back to you shortly.
+                      Thank you, <span className="text-white font-medium">{formData.name}</span>! S. M. A Rahman Hasan will review your inquiry and get back to you promptly at <span className="text-indigo-300 font-mono">{formData.email}</span>.
                     </p>
-                    <button
-                      onClick={() => {
-                        setIsSubmitted(false);
-                        setFormData({ name: '', email: '', service: 'Graphic Design', subject: '', message: '' });
-                      }}
-                      className="mt-6 px-6 py-2.5 rounded-xl text-xs font-semibold text-white bg-brand-purple hover:bg-brand-violet hover:scale-105 active:scale-95 transition-all duration-300"
-                    >
-                      Send Another Message
-                    </button>
+                    <div className="pt-4 flex flex-wrap justify-center gap-3">
+                      <a
+                        href={`mailto:smarhasan.01@gmail.com?subject=${encodeURIComponent(formData.subject || 'Design Project Inquiry')}&body=${encodeURIComponent(`Hi Rahman,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`)}`}
+                        className="px-6 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue hover:shadow-glow-purple transition-colors"
+                      >
+                        Open In Email App
+                      </a>
+                      <button
+                        onClick={() => {
+                          setIsSubmitted(false);
+                          setFormData({ name: '', email: '', service: 'Graphic Design', subject: '', message: '' });
+                        }}
+                        className="px-6 py-2.5 rounded-xl text-xs font-semibold text-zinc-300 hover:text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                      >
+                        Send Another Message
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -241,18 +251,17 @@ export default function Contact() {
                     {/* Service Selection */}
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                        Interested In
+                        Area of Interest
                       </label>
                       <select
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-[#141418] border border-white/10 text-sm text-white focus:outline-none focus:border-brand-purple transition-all"
                       >
-                        <option value="Graphic Design">Graphic Design & Marketing Collateral</option>
-                        <option value="UI/UX Design">UI/UX & Mobile / Web App Design</option>
-                        <option value="Brand Identity">Brand Identity & Logo Design</option>
-                        <option value="Packaging & Mockups">Product Packaging & Mockups</option>
-                        <option value="Full-time Opportunity">Full-time / Cross-functional Role</option>
+                        <option value="Graphic Design">Graphic Design & Print Media</option>
+                        <option value="UI/UX Design">UI/UX & Website Interface Design</option>
+                        <option value="Brand Identity">Brand Identity & Visual Guidelines</option>
+                        <option value="Team Leadership / Full-time">Design Team Leadership & Training</option>
                       </select>
                     </div>
 
@@ -263,7 +272,7 @@ export default function Contact() {
                       </label>
                       <input
                         type="text"
-                        placeholder="Project brief or job title"
+                        placeholder="Project title or inquiry subject"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-[#141418] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-brand-purple transition-all"
@@ -273,11 +282,11 @@ export default function Contact() {
                     {/* Message */}
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
-                        Project Details / Message <span className="text-rose-400">*</span>
+                        Message Details <span className="text-rose-400">*</span>
                       </label>
                       <textarea
                         rows={5}
-                        placeholder="Tell me about your goals, timeline, and deliverables..."
+                        placeholder="Please describe your requirements, project scope, or opportunity..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className={`w-full px-4 py-3 rounded-xl bg-[#141418] border text-sm text-white placeholder-zinc-500 focus:outline-none transition-all ${
@@ -287,7 +296,7 @@ export default function Contact() {
                       {errors.message && <p className="text-xs text-rose-400 mt-1.5">{errors.message}</p>}
                     </div>
 
-                    {/* Submit Button with hover effect */}
+                    {/* Submit Button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -297,7 +306,7 @@ export default function Contact() {
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       ) : (
                         <>
-                          <span>Submit Inquiry</span>
+                          <span>Send Inquiry</span>
                           <Send className="w-4 h-4 group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                         </>
                       )}

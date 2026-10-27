@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
-import { skillsList } from '../data/portfolioData';
-import { Sparkles, Sliders, RotateCcw } from 'lucide-react';
+import React from 'react';
+import { skillsData } from '../data/portfolioData';
+import { Sparkles, Palette, Layout, Users, Check } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 
+const iconMap = {
+  Palette: Palette,
+  Layout: Layout,
+  Users: Users,
+};
+
+const categoryAccents = {
+  "Graphic Design": {
+    badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    glow: "rgba(168, 85, 247, 0.2)",
+    iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/20"
+  },
+  "UI/UX Design": {
+    badgeColor: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+    glow: "rgba(59, 130, 246, 0.2)",
+    iconBg: "bg-blue-500/10 text-blue-400 border-blue-500/20"
+  },
+  "Professional Skills": {
+    badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    glow: "rgba(16, 185, 129, 0.2)",
+    iconBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+  }
+};
+
 export default function Skills() {
-  const [skillsData, setSkillsData] = useState(skillsList);
-  const [isEditMode, setIsEditMode] = useState(false);
-
-  const handleSliderChange = (catIdx, itemIdx, val) => {
-    const updated = JSON.parse(JSON.stringify(skillsData));
-    updated[catIdx].items[itemIdx].level = parseInt(val, 10);
-    setSkillsData(updated);
-  };
-
-  const resetToDefault = () => {
-    setSkillsData(skillsList);
-  };
-
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-[#161619]">
       {/* Background ambient lighting */}
@@ -30,113 +41,79 @@ export default function Skills() {
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Technical Capabilities</span>
+              <span>Competencies & Expertise</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tight">
-              Design Proficiency & Skills
+              Skills & Creative Arsenal
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-              Practical skills honed through continuous design practice, client deliverables, and mastery of visual communication.
+              Specialized proficiencies across visual communication, user interface design, instructional training, and workflow leadership.
             </p>
-
-            {/* Quick Customization Mode Pill */}
-            <div className="pt-2 flex items-center justify-center gap-3">
-              <button
-                onClick={() => setIsEditMode(!isEditMode)}
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium border transition-all ${
-                  isEditMode
-                    ? 'bg-brand-purple text-white border-brand-purple shadow-glow-purple'
-                    : 'bg-[#202028] text-zinc-400 border-white/10 hover:text-white'
-                }`}
-              >
-                <Sliders className="w-3.5 h-3.5" />
-                <span>{isEditMode ? 'Exit Customizer' : 'Interactive Customizer'}</span>
-              </button>
-
-              {isEditMode && (
-                <button
-                  onClick={resetToDefault}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-zinc-400 hover:text-white bg-white/5 border border-white/10"
-                >
-                  <RotateCcw className="w-3 h-3" />
-                  <span>Reset</span>
-                </button>
-              )}
-            </div>
           </div>
         </ScrollReveal>
 
-        {/* Skills Grid with 3D Tilt */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {skillsData.map((category, catIdx) => (
-            <ScrollReveal key={catIdx} direction="up" delay={150 * (catIdx + 1)}>
-              <TiltCard maxTilt={5} scale={1.01} className="h-full rounded-3xl">
-                <div className="p-8 rounded-3xl bg-[#1b1b22] border border-white/8 shadow-xl text-left h-full">
-                  <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
-                    <h3 className="text-lg font-bold font-display text-white tracking-wide">
-                      {category.category}
-                    </h3>
-                    <span className="text-xs font-mono text-brand-purple bg-brand-purple/10 px-2.5 py-1 rounded-md border border-brand-purple/20">
-                      {category.items.length} Disciplines
-                    </span>
-                  </div>
+        {/* 3 Categories Grid with 3D Tilt */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {skillsData.map((category, catIdx) => {
+            const Icon = iconMap[category.icon] || Palette;
+            const style = categoryAccents[category.category] || categoryAccents["Graphic Design"];
 
-                  <div className="space-y-6">
-                    {category.items.map((skill, itemIdx) => (
-                      <div key={itemIdx} className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-semibold text-zinc-200">
-                              {skill.name}
+            return (
+              <ScrollReveal key={catIdx} direction="up" delay={150 * (catIdx + 1)}>
+                <TiltCard maxTilt={6} scale={1.02} className="h-full rounded-3xl">
+                  <div className="p-8 rounded-3xl bg-[#1b1b22] border border-white/8 hover:border-brand-purple/40 shadow-xl text-left h-full flex flex-col justify-between group transition-all duration-300">
+                    
+                    <div>
+                      {/* Category Header */}
+                      <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-11 h-11 rounded-xl flex items-center justify-center border ${style.iconBg} group-hover:scale-110 transition-transform`}>
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold font-display text-white tracking-wide">
+                              {category.category}
+                            </h3>
+                            <span className="text-[10px] text-zinc-500 font-mono">
+                              {category.skills.length} Capabilities
                             </span>
-                            {skill.tag && (
-                              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 border border-white/5">
-                                {skill.tag}
-                              </span>
-                            )}
                           </div>
-                          <span className="text-xs font-bold font-mono text-indigo-400">
-                            {skill.level}%
-                          </span>
                         </div>
-
-                        {/* Progress Bar with smooth gradient */}
-                        <div className="h-2.5 w-full bg-[#121216] rounded-full overflow-hidden p-0.5 border border-white/5">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-brand-purple via-indigo-500 to-brand-cyan transition-all duration-700 shadow-[0_0_12px_rgba(99,102,241,0.5)]"
-                            style={{ width: `${skill.level}%` }}
-                          />
-                        </div>
-
-                        {/* Interactive Slider if Edit Mode is enabled */}
-                        {isEditMode && (
-                          <div className="pt-1 flex items-center gap-3">
-                            <input
-                              type="range"
-                              min="30"
-                              max="100"
-                              value={skill.level}
-                              onChange={(e) => handleSliderChange(catIdx, itemIdx, e.target.value)}
-                              className="w-full accent-brand-purple cursor-pointer h-1 bg-zinc-700 rounded-lg"
-                            />
-                            <span className="text-[10px] font-mono text-zinc-400">{skill.level}%</span>
-                          </div>
-                        )}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </TiltCard>
-            </ScrollReveal>
-          ))}
-        </div>
 
-        {/* Skill Philosophy Note */}
-        <ScrollReveal direction="fade" delay={400}>
-          <div className="mt-8 text-center text-xs text-zinc-500 max-w-lg mx-auto font-mono">
-            Note: Skill levels represent relative focus and depth of applied project experience. All values can be effortlessly updated in <code className="text-indigo-400">src/data/portfolioData.js</code>.
-          </div>
-        </ScrollReveal>
+                      <p className="text-xs text-zinc-400 mb-6 leading-relaxed">
+                        {category.description}
+                      </p>
+
+                      {/* Skills Badges / Pills */}
+                      <div className="flex flex-wrap gap-2.5">
+                        {category.skills.map((skill, sIdx) => (
+                          <div
+                            key={sIdx}
+                            className="px-3.5 py-2 rounded-xl text-xs font-medium bg-[#141418] hover:bg-[#202028] text-zinc-200 hover:text-white border border-white/8 hover:border-brand-purple/40 flex items-center gap-2 transition-all duration-200 hover:scale-[1.03]"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-purple" />
+                            <span>{skill}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Bottom verification badge */}
+                    <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between text-[11px] text-zinc-500 font-mono">
+                      <span className="flex items-center gap-1.5 text-zinc-400">
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Applied & Active</span>
+                      </span>
+                      <span>SMRH Portfolio</span>
+                    </div>
+
+                  </div>
+                </TiltCard>
+              </ScrollReveal>
+            );
+          })}
+        </div>
 
       </div>
     </section>
