@@ -13,11 +13,19 @@ const iconMap = {
 export default function Services() {
   const scrollTo = (id) => {
     const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-[#161619]">
+    <section id="services" className="py-24 relative overflow-hidden bg-[#161619] scroll-mt-24">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-brand-purple/10 rounded-full blur-[140px] pointer-events-none animate-ambient-drift-rev transform-gpu will-change-transform" />
 

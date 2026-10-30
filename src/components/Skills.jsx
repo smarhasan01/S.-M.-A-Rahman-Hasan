@@ -30,7 +30,7 @@ const categoryAccents = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-[#161619]">
+    <section id="skills" className="py-24 relative overflow-hidden bg-[#161619] scroll-mt-24">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-10 w-96 h-96 bg-brand-blue/10 rounded-full blur-[140px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
 

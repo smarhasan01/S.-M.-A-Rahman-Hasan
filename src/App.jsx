@@ -4,9 +4,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import DesignTools from './components/DesignTools';
-import Skills from './components/Skills';
-import Portfolio from './components/Portfolio';
 import WorkExperience from './components/WorkExperience';
+import Portfolio from './components/Portfolio';
+import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProjectModal from './components/ProjectModal';
@@ -16,32 +16,79 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Intersection observer to track current active section for navbar
+  // High-performance scroll tracking for active navigation section
   useEffect(() => {
-    const sections = ['home', 'about', 'services', 'tools', 'skills', 'portfolio', 'experience', 'contact'];
-    
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sectionId);
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // If scrolled near bottom of page, activate Contact
+          if (
+            window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 120
+          ) {
+            setActiveSection('contact');
+            ticking = false;
+            return;
           }
-        }
+
+          // If at the top of page, activate Home
+          if (window.scrollY < 120) {
+            setActiveSection('home');
+            ticking = false;
+            return;
+          }
+
+          // Viewport threshold at 35% height for natural reading position
+          const viewportThreshold = window.innerHeight * 0.35;
+
+          const sectionsInOrder = [
+            { id: 'home', navId: 'home' },
+            { id: 'about', navId: 'about' },
+            { id: 'services', navId: 'about' },
+            { id: 'tools', navId: 'about' },
+            { id: 'experience', navId: 'experience' },
+            { id: 'projects', navId: 'projects' },
+            { id: 'skills', navId: 'skills' },
+            { id: 'contact', navId: 'contact' },
+          ];
+
+          let currentNav = 'home';
+          for (const sec of sectionsInOrder) {
+            const el = document.getElementById(sec.id);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= viewportThreshold) {
+                currentNav = sec.navId;
+              }
+            }
+          }
+
+          setActiveSection(currentNav);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleContactClick = () => {
     const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+      setActiveSection('contact');
+    }
   };
 
   return (
@@ -58,7 +105,7 @@ export default function App() {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Navigation Bar */}
-        <Navbar activeSection={activeSection} />
+        <Navbar activeSection={activeSection} onSectionChange={setActiveSection} />
 
         {/* Main Content Sections */}
         <main className="flex-grow">
@@ -74,14 +121,14 @@ export default function App() {
           {/* 4. Design Tools & Ecosystem */}
           <DesignTools />
 
-          {/* 5. Skills & Proficiency */}
-          <Skills />
+          {/* 5. Work Experience & Learning Journey */}
+          <WorkExperience />
 
           {/* 6. Featured Portfolio Showcase */}
           <Portfolio onSelectProject={(project) => setSelectedProject(project)} />
 
-          {/* 7. Work Experience & Learning Journey */}
-          <WorkExperience />
+          {/* 7. Skills & Proficiency */}
+          <Skills />
 
           {/* 8. Contact & Collaboration */}
           <Contact />

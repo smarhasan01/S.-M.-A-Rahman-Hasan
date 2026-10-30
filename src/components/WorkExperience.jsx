@@ -12,7 +12,7 @@ const FacebookIcon = ({ className = "w-3 h-3" }) => (
 
 export default function WorkExperience() {
   return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-[#161619]">
+    <section id="experience" className="py-24 relative overflow-hidden bg-[#161619] scroll-mt-24">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 right-10 w-96 h-96 bg-brand-orange/10 rounded-full blur-[140px] pointer-events-none animate-ambient-drift-rev transform-gpu will-change-transform" />
 

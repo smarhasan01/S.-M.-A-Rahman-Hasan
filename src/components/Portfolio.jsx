@@ -7,7 +7,7 @@ import TiltCard from './TiltCard';
 
 export default function Portfolio({ onSelectProject }) {
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden scroll-mt-24">
       {/* Anchor for portfolio alias */}
       <div id="portfolio" className="absolute -top-24 left-0 pointer-events-none" />
       {/* Background ambient lighting */}

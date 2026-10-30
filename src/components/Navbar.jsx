@@ -11,23 +11,42 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar({ activeSection }) {
+export default function Navbar({ activeSection, onSectionChange }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 25);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (href) => {
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
+    const targetId = href.replace('#', '');
+    const target = document.getElementById(targetId);
+
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+
+      if (onSectionChange) {
+        onSectionChange(targetId);
+      }
+    } else if (href === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (onSectionChange) {
+        onSectionChange('home');
+      }
     }
   };
 
@@ -66,20 +85,34 @@ export default function Navbar({ activeSection }) {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2 bg-[#1b1b22]/70 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/5">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-1.5 bg-[#1b1b22]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-lg shadow-black/20">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
+              const sectionId = item.href.substring(1);
+              const isActive = activeSection === sectionId;
               return (
                 <button
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 relative ${
+                  aria-label={`Navigate to ${item.name}`}
+                  className={`group relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 select-none focus:outline-none ${
                     isActive
-                      ? 'text-white bg-gradient-to-r from-brand-purple/80 to-brand-blue/80 shadow-[0_0_15px_rgba(109,93,252,0.4)]'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                      ? 'text-white bg-gradient-to-r from-brand-purple/90 to-brand-blue/90 shadow-[0_0_16px_rgba(109,93,252,0.5)]'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5 active:scale-95'
                   }`}
                 >
-                  {item.name}
+                  <span className="relative z-10 transition-colors duration-200">
+                    {item.name}
+                  </span>
+
+                  {/* Active bottom glow indicator pill */}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-[2px] rounded-full bg-gradient-to-r from-brand-purple to-cyan-400 shadow-[0_0_8px_#6d5dfc] pointer-events-none" />
+                  )}
+
+                  {/* Hover subtle expanding underline effect for inactive links */}
+                  {!isActive && (
+                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-[1.5px] rounded-full bg-gradient-to-r from-brand-purple/70 to-brand-blue/70 transition-all duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
+                  )}
                 </button>
               );
             })}
@@ -99,7 +132,7 @@ export default function Navbar({ activeSection }) {
             {/* Mobile menu button */}
             <button
               type="button"
-              className="md:hidden p-2 rounded-xl bg-[#202028] text-zinc-300 hover:text-white border border-white/10 focus:outline-none"
+              className="md:hidden p-2 rounded-xl bg-[#202028] text-zinc-300 hover:text-white border border-white/10 focus:outline-none active:scale-95 transition-transform"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
             >
@@ -111,27 +144,33 @@ export default function Navbar({ activeSection }) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#171719]/98 backdrop-blur-xl border-b border-white/10 px-6 pt-4 pb-6 space-y-2 animate-fadeIn">
+        <div className="md:hidden bg-[#171719]/98 backdrop-blur-xl border-b border-white/10 px-5 pt-3 pb-6 space-y-1.5 animate-fadeIn">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
+            const sectionId = item.href.substring(1);
+            const isActive = activeSection === sectionId;
             return (
               <button
                 key={item.name}
                 onClick={() => handleNavClick(item.href)}
-                className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 select-none ${
                   isActive
-                    ? 'text-white bg-gradient-to-r from-brand-purple/30 to-brand-blue/30 border border-brand-purple/40 font-semibold'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-gradient-to-r from-brand-purple/30 via-brand-purple/20 to-brand-blue/30 border border-brand-purple/40 shadow-sm font-semibold'
+                    : 'text-zinc-400 hover:text-white hover:bg-white/5 active:bg-white/10'
                 }`}
               >
-                {item.name}
+                <span>{item.name}</span>
+                {isActive ? (
+                  <span className="w-2 h-2 rounded-full bg-brand-cyan shadow-[0_0_8px_#38bdf8] animate-pulse" />
+                ) : (
+                  <span className="text-zinc-600 text-xs">&rarr;</span>
+                )}
               </button>
             );
           })}
-          <div className="pt-3">
+          <div className="pt-3 border-t border-white/5">
             <a
               href="mailto:smarhasan.01@gmail.com"
-              className="w-full py-2.5 rounded-xl text-center text-sm font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue shadow-glow-purple flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl text-center text-sm font-semibold text-white bg-gradient-to-r from-brand-purple to-brand-blue shadow-glow-purple flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.98] transition-all"
             >
               <Mail className="w-4 h-4" />
               <span>Email Me (smarhasan.01@gmail.com)</span>

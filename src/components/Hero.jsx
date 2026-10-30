@@ -7,11 +7,19 @@ import TiltCard from './TiltCard';
 export default function Hero() {
   const scrollTo = (id) => {
     const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <section id="home" className="relative min-h-[92vh] flex items-center pt-28 pb-16 lg:py-32 overflow-hidden">
+    <section id="home" className="relative min-h-[92vh] flex items-center pt-28 pb-16 lg:py-32 overflow-hidden scroll-mt-24">
       {/* Background radial glow accents with subtle GPU-accelerated drift */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-brand-purple/20 rounded-full blur-[120px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
       <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-brand-blue/15 rounded-full blur-[140px] pointer-events-none animate-ambient-drift-rev transform-gpu will-change-transform" />

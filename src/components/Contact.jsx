@@ -62,7 +62,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden scroll-mt-24">
       {/* Background radial glow */}
       <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-brand-purple/15 rounded-full blur-[140px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
 

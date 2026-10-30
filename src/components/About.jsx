@@ -28,11 +28,19 @@ const pillars = [
 export default function About() {
   const scrollTo = (id) => {
     const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      const headerOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#161619]">
+    <section id="about" className="py-24 relative overflow-hidden bg-[#161619] scroll-mt-24">
       {/* Background ambient accents */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
 

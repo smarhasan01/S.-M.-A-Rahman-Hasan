@@ -8,7 +8,7 @@ export default function DesignTools() {
   const [selectedTool, setSelectedTool] = useState(designTools[0]);
 
   return (
-    <section id="tools" className="py-24 relative overflow-hidden">
+    <section id="tools" className="py-24 relative overflow-hidden scroll-mt-24">
       {/* Background radial glow with ambient drift */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-brand-purple/15 rounded-full blur-[160px] pointer-events-none animate-ambient-drift transform-gpu will-change-transform" />
 
