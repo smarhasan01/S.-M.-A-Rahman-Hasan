@@ -41,33 +41,28 @@ export default function Navbar({ activeSection }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo & Name */}
           <a
             href="#home"
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex items-center gap-2.5 sm:gap-3.5 group focus:outline-none flex-shrink-0"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('#home');
             }}
           >
-            <div className="relative">
+            <div className="relative flex items-center">
               <img
-                src={personalInfo.logoImage}
-                alt={personalInfo.name}
-                className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                src={personalInfo.headerLogo || '/images/hasan-logo.png.png'}
+                alt="S. M. A RAHMAN HASAN"
+                className="h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
               />
             </div>
-            <div className="flex flex-col text-left">
-              <span className="font-display font-black tracking-wider text-white text-lg group-hover:text-brand-purple transition-colors">
-                {personalInfo.brandName}
-              </span>
-              <span className="text-[10px] tracking-widest text-zinc-400 uppercase -mt-1 hidden sm:block font-mono">
-                {personalInfo.name}
-              </span>
-            </div>
+            <span className="font-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider text-white group-hover:text-brand-purple transition-colors duration-300 whitespace-nowrap uppercase">
+              S. M. A RAHMAN HASAN
+            </span>
           </a>
 
           {/* Desktop Navigation Links */}

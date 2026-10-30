@@ -18,6 +18,7 @@ export const personalInfo = {
   profileImageFallback: "/profile_hex.png",
   originalProfileUrl: "https://scontent.fdac5-1.fna.fbcdn.net/v/t39.30808-6/616796811_1448017203481234_3211207343260680748_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048",
   logoImage: "/smrh_logo.png",
+  headerLogo: "/images/hasan-logo.png.png",
   
   socialLinks: [
     { name: "GitHub", url: "https://github.com/smarhasan01", icon: "Github" },
