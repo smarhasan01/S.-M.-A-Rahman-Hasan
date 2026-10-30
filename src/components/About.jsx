@@ -143,7 +143,7 @@ export default function About() {
                           e.currentTarget.src = personalInfo.profileImageFallback;
                         }
                       }}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#141419] via-[#141419]/70 to-transparent p-4 flex flex-col justify-end text-left">
                       <span className="text-white font-bold text-base block font-display">

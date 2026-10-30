@@ -14,9 +14,9 @@ export const personalInfo = {
   location: "Bangladesh",
   email: "smarhasan.01@gmail.com",
   mailtoLink: "mailto:smarhasan.01@gmail.com",
-  profileImage: "/images/profile.jpg",
-  profileImageFallback: "/profile_hex.png",
-  originalProfileUrl: "https://scontent.fdac5-1.fna.fbcdn.net/v/t39.30808-6/616796811_1448017203481234_3211207343260680748_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048",
+  profileImage: "/my-photo.jpg",
+  profileImageFallback: "/my-photo.jpg",
+  originalProfileUrl: "/my-photo.jpg",
   logoImage: "/smrh_logo.png",
   headerLogo: "/images/hasan-logo.png.png",
   

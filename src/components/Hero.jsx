@@ -126,7 +126,7 @@ export default function Hero() {
                           e.currentTarget.src = personalInfo.profileImageFallback;
                         }
                       }}
-                      className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
                     />
 
                     {/* Gradient bottom overlay for smooth visual blending */}
