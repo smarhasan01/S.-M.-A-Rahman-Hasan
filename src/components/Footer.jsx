@@ -37,21 +37,16 @@ export default function Footer() {
           
           {/* Logo & Bio Info */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 sm:gap-3.5">
               <img
                 src={personalInfo.logoImage}
-                alt={personalInfo.name}
-                className="h-9 w-auto object-contain"
+                alt="S. M. A RAHMAN HASAN"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
-              <div>
-                <span className="font-display font-black text-xl text-white tracking-wider block">
-                  {personalInfo.brandName}
-                </span>
-                <span className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase block -mt-1">
-                  {personalInfo.name}
-                </span>
-              </div>
+              <span className="font-heading font-bold text-sm sm:text-base md:text-lg tracking-wider text-white uppercase whitespace-nowrap">
+                S. M. A RAHMAN HASAN
+              </span>
             </div>
 
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
@@ -113,7 +108,7 @@ export default function Footer() {
         {/* Bottom Copyright & Back-to-top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
           <div>
-            &copy; {new Date().getFullYear()} {personalInfo.name} ({personalInfo.brandName}). All rights reserved.
+            &copy; {new Date().getFullYear()} S. M. A RAHMAN HASAN. All rights reserved.
           </div>
 
           <button

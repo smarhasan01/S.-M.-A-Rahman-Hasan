@@ -7,7 +7,7 @@ export const personalInfo = {
   name: "S. M. A Rahman Hasan",
   firstName: "S. M. A Rahman",
   lastName: "Hasan",
-  brandName: "SMRH",
+  brandName: "S. M. A RAHMAN HASAN",
   role: "Graphic Designer | UI/UX Designer | Design Team Leader",
   bioHeadline: "Hi, I'm",
   shortIntro: "I am a creative designer specializing in graphic design and UI/UX design. I have experience in branding, print design, digital graphics, website UI design, and team leadership. I am also experienced in training students in graphic design and managing document preparation workflows. I enjoy exploring new design trends, solving design challenges, and creating visually appealing, user-friendly, and meaningful design solutions.",
@@ -17,7 +17,7 @@ export const personalInfo = {
   profileImage: "/my-photo.jpg",
   profileImageFallback: "/my-photo.jpg",
   originalProfileUrl: "/my-photo.jpg",
-  logoImage: "/smrh_logo.png",
+  logoImage: "/images/hasan-logo.png.png",
   headerLogo: "/images/hasan-logo.png.png",
   
   socialLinks: [

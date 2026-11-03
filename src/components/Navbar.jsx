@@ -71,7 +71,7 @@ export default function Navbar({ activeSection, onSectionChange }) {
           >
             <div className="relative flex items-center">
               <img
-                src={personalInfo.headerLogo || '/images/hasan-logo.png.png'}
+                src={personalInfo.logoImage}
                 alt="S. M. A RAHMAN HASAN"
                 className="h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
