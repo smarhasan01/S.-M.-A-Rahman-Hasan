@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
-import { designTools } from '../data/portfolioData';
+import { designTools, personalInfo } from '../data/portfolioData';
 import { Cpu } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 
+// Authentic Canva Vector Brand Mark (Simple Icons standard)
+const CanvaIcon = ({ className = "w-8 h-8" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-label="Canva Logo"
+  >
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12S18.627 0 12 0M6.962 7.68c.754 0 1.337.549 1.405 1.2c.069.583-.171 1.097-.822 1.406c-.343.171-.48.172-.549.069c-.034-.069 0-.137.069-.206c.617-.514.617-.926.548-1.508c-.034-.378-.308-.618-.583-.618c-1.2 0-2.914 2.674-2.674 4.629c.103.754.549 1.646 1.509 1.646c.308 0 .65-.103.96-.24c.5-.264.799-.47 1.097-.8c-.073-.885.704-2.046 1.851-2.046c.515 0 .926.205.96.583c.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378c-.035-.206-.24-.274-.446-.274c-.72 0-1.131.994-1.029 1.611c.035.275.172.549.447.549c.205 0 .514-.31.617-.755c.068-.308.343-.514.583-.514c.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651c0 .069.034.171.17.171c.092 0 .436-.18.777-.459c.117-.59.253-1.298.253-1.357c.034-.24.137-.48.617-.48c.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994c.172 0 .309.102.309.274c0 .103 0 .274-.069.446c-.137.377-.309.96-.412 1.474c0 .137.035.274.207.274s.685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202c0-.411.035-.754.104-.994c.068-.274.411-.514.617-.514c.103 0 .205.069.205.171c0 .035 0 .103-.034.137c-.137.446-.24.857-.24 1.269c0 .24.034.582.102.788c0 .034.035.069.07.069c.068 0 .548-.445.89-1.028c-.308-.206-.48-.549-.48-.96c0-.72.446-1.097.858-1.097c.343 0 .617.24.617.72c0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24a.3.3 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74c.48 0 .924.205.959.582c.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172s.309-.068.274-.376c-.034-.206-.24-.275-.446-.275c-.686 0-1.13.891-1.028 1.611c.034.275.171.583.445.583c.206 0 .515-.308.652-.754c.068-.274.343-.514.583-.514c.103 0 .17.034.205.171c0 .069 0 .206-.137.652c-.17.308-.171.48-.137.617c.034.274.171.48.309.583c.034.034.068.102.068.102c0 .069-.034.138-.137.138c-.034 0-.411-.205-.823-.515c-.274-.206-.548-.411-.788-.411c-.308 0-.583.205-.685.548c-.137.48-.309.995-.446 1.475c-.103.377-.309.72-.617.96c-.412.309-.926.48-1.44 0c-.514-.446-.72-1.166-.994-1.783c-.069-.171-.206-.274-.377-.274c-.206 0-.343.137-.412.308c-.24.618-.583 1.235-1.028 1.749c-.48.515-1.098.858-1.75 1.029c-.72.171-1.474.205-2.228.103c-1.303-.172-2.503-.857-3.326-1.886c-.823-1.029-1.27-2.366-1.234-3.703c.068-2.47 1.817-4.664 3.703-6.07c.583-.445 1.234-.822 1.885-1.2a14.7 14.7 0 0 1 1.098-.583c.24-.103.377-.377.343-.651c-.035-.309-.309-.515-.618-.48c-.686.068-1.372.24-2.023.514c-.651.274-1.268.617-1.851 1.029c-1.2 0-2.366.617-3.051 1.611c-.343.48-.549 1.063-.583 1.68c-.034.617.137 1.234.48 1.748c.343.514.857.892 1.44 1.132c.583.24 1.2.343 1.852.308c.514-.034.994-.205 1.405-.514c.412-.309.72-.754.892-1.235c.171-.48.205-1.028.068-1.543c-.137-.514-.445-.96-.857-1.269c-.412-.309-.926-.48-1.44-.48z" />
+  </svg>
+);
+
 export default function DesignTools() {
   const [selectedTool, setSelectedTool] = useState(designTools[0]);
+
+  // Dynamic Orbit Labels:
+  // Figma & Adobe XD -> UI & UX
+  // Photoshop, Illustrator & Canva -> Graphic Design / GD
+  const isUiUx = selectedTool.id === 'figma' || selectedTool.id === 'adobexd';
+  const orbitNode1 = isUiUx ? 'UI' : 'Graphic';
+  const orbitNode2 = isUiUx ? 'UX' : 'Design';
 
   return (
     <section id="tools" className="py-24 relative overflow-hidden scroll-mt-24">
@@ -36,13 +55,14 @@ export default function DesignTools() {
           
           {/* Top Tool Nodes matching the reference layout */}
           <ScrollReveal direction="up" delay={200}>
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 relative z-20 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 md:gap-7 relative z-20 mb-8">
               {designTools.map((tool) => {
                 const isSelected = selectedTool.id === tool.id;
                 return (
                   <button
                     key={tool.id}
                     onClick={() => setSelectedTool(tool)}
+                    aria-label={`Select ${tool.name}`}
                     className={`group relative flex flex-col items-center p-3 sm:p-4 rounded-2xl transition-all duration-300 transform-gpu ${
                       isSelected
                         ? 'scale-110 shadow-2xl bg-[#1e1e28]'
@@ -62,7 +82,11 @@ export default function DesignTools() {
                         border: `1.5px solid ${tool.color}60`,
                       }}
                     >
-                      <span className="relative z-10">{tool.abbr}</span>
+                      {tool.id === 'canva' ? (
+                        <CanvaIcon className="w-7 h-7 sm:w-8 sm:h-8 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                      ) : (
+                        <span className="relative z-10">{tool.abbr}</span>
+                      )}
                       <div
                         className="absolute inset-0 opacity-20 blur-sm"
                         style={{ background: tool.color }}
@@ -112,36 +136,44 @@ export default function DesignTools() {
                   </filter>
                 </defs>
 
-                {/* Four curved lines from 4 tool positions down to center orb (400, 200) */}
+                {/* Five curved lines from 5 tool positions down to center orb (400, 200) */}
                 <path
-                  d="M 180,20 C 220,100 350,150 400,200"
+                  d="M 130,20 C 180,100 340,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'photoshop' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'photoshop' ? '2.5' : '1.2'}
+                  strokeWidth={selectedTool.id === 'photoshop' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
                 <path
-                  d="M 320,20 C 340,100 380,150 400,200"
+                  d="M 265,20 C 300,100 370,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'illustrator' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'illustrator' ? '2.5' : '1.2'}
+                  strokeWidth={selectedTool.id === 'illustrator' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
                 <path
-                  d="M 480,20 C 460,100 420,150 400,200"
+                  d="M 400,20 C 400,80 400,140 400,200"
+                  fill="none"
+                  stroke={selectedTool.id === 'canva' ? selectedTool.color : 'url(#fiberGrad)'}
+                  strokeWidth={selectedTool.id === 'canva' ? '2.8' : '1.2'}
+                  filter="url(#glow)"
+                  className="transition-all duration-500"
+                />
+                <path
+                  d="M 535,20 C 500,100 430,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'figma' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'figma' ? '2.5' : '1.2'}
+                  strokeWidth={selectedTool.id === 'figma' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
                 <path
-                  d="M 620,20 C 580,100 450,150 400,200"
+                  d="M 670,20 C 620,100 460,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'adobexd' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'adobexd' ? '2.5' : '1.2'}
+                  strokeWidth={selectedTool.id === 'adobexd' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -152,29 +184,40 @@ export default function DesignTools() {
                 <ellipse cx="400" cy="210" rx="180" ry="30" fill="none" stroke="#a855f7" strokeOpacity="0.35" strokeWidth="1" />
               </svg>
 
-              {/* Central Glowing SMRH Orb */}
+              {/* Central Glowing Orb with SMA Brand Logo */}
               <div className="relative z-10 mt-16 group">
-                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-[#3b32b8] via-[#5241e3] to-[#7667ff] p-1 shadow-[0_0_70px_rgba(82,65,227,0.7)] flex items-center justify-center relative animate-pulse-slow transform-gpu will-change-transform">
+                <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-gradient-to-tr from-[#3b32b8] via-[#5241e3] to-[#7667ff] p-1 shadow-[0_0_70px_rgba(82,65,227,0.7)] flex items-center justify-center relative animate-pulse-slow transform-gpu will-change-transform">
                   
-                  {/* Inner Orb Content with SMRH Logo */}
-                  <div className="w-full h-full rounded-full bg-[#1b173d] flex flex-col items-center justify-center text-center p-3 border border-indigo-400/40">
-                    <span className="font-display font-black text-2xl sm:text-3xl tracking-widest text-white drop-shadow">
-                      SMRH
+                  {/* Inner Orb Content with Original SMA Brand Logo */}
+                  <div className="w-full h-full rounded-full bg-[#1b173d] flex flex-col items-center justify-center text-center p-3 border border-indigo-400/40 overflow-hidden">
+                    <img
+                      src={personalInfo.logoImage}
+                      alt="S M A RAHMAN HASAN"
+                      className="max-h-11 sm:max-h-12 w-auto max-w-[110px] object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                    <span className="text-[8px] sm:text-[9px] font-sans font-medium text-indigo-200 tracking-wider mt-1 select-none whitespace-nowrap uppercase">
+                      S M A RAHMAN HASAN
                     </span>
-                    <span className="text-[8px] font-sans text-indigo-200 tracking-wider -mt-0.5">
-                      S M A Rahman Hasan
-                    </span>
-                    <div className="w-8 h-0.5 bg-indigo-400/60 rounded-full mt-1.5" />
+                    <div className="w-8 h-0.5 bg-indigo-400/60 rounded-full mt-1" />
                   </div>
 
                   {/* Orbiting Tech Node 1 */}
-                  <div className="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-[#1b1b22] border border-brand-purple/50 flex items-center justify-center text-[9px] font-mono text-indigo-300 shadow animate-float transform-gpu will-change-transform">
-                    UI
+                  <div
+                    className="absolute -top-3 -right-3 min-w-[32px] sm:min-w-[36px] h-7 sm:h-8 px-2.5 rounded-full bg-[#1b1b22] border border-brand-purple/50 flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold text-indigo-300 shadow animate-float transform-gpu will-change-transform select-none transition-all duration-300"
+                    title={isUiUx ? "User Interface (UI)" : "Graphic Design"}
+                  >
+                    {orbitNode1}
                   </div>
 
                   {/* Orbiting Tech Node 2 */}
-                  <div className="absolute -bottom-2 -left-3 w-7 h-7 rounded-full bg-[#1b1b22] border border-blue-400/50 flex items-center justify-center text-[9px] font-mono text-cyan-300 shadow animate-float-slow transform-gpu will-change-transform">
-                    UX
+                  <div
+                    className="absolute -bottom-2 -left-3 min-w-[32px] sm:min-w-[36px] h-7 sm:h-8 px-2.5 rounded-full bg-[#1b1b22] border border-blue-400/50 flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold text-cyan-300 shadow animate-float-slow transform-gpu will-change-transform select-none transition-all duration-300"
+                    title={isUiUx ? "User Experience (UX)" : "Graphic Design"}
+                  >
+                    {orbitNode2}
                   </div>
                 </div>
               </div>
@@ -198,7 +241,11 @@ export default function DesignTools() {
                           color: selectedTool.color,
                         }}
                       >
-                        {selectedTool.abbr}
+                        {selectedTool.id === 'canva' ? (
+                          <CanvaIcon className="w-5 h-5" />
+                        ) : (
+                          selectedTool.abbr
+                        )}
                       </div>
                       <div>
                         <h4 className="text-base font-bold text-white">{selectedTool.name}</h4>

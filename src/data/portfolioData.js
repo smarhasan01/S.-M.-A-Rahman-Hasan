@@ -7,7 +7,7 @@ export const personalInfo = {
   name: "S. M. A Rahman Hasan",
   firstName: "S. M. A Rahman",
   lastName: "Hasan",
-  brandName: "S. M. A RAHMAN HASAN",
+  brandName: "S M A RAHMAN HASAN",
   role: "Graphic Designer | UI/UX Designer | Design Team Leader",
   bioHeadline: "Hi, I'm",
   shortIntro: "I am a creative designer specializing in graphic design and UI/UX design. I have experience in branding, print design, digital graphics, website UI design, and team leadership. I am also experienced in training students in graphic design and managing document preparation workflows. I enjoy exploring new design trends, solving design challenges, and creating visually appealing, user-friendly, and meaningful design solutions.",
@@ -291,6 +291,15 @@ export const designTools = [
     tagline: "Vector Design & Typography",
     proficiency: "Core Tool",
     description: "Essential software for scalable vector logos, promotional posters, print collateral, iconography, and leaflet design."
+  },
+  {
+    id: "canva",
+    name: "Canva",
+    abbr: "Cv",
+    color: "#00c4cc",
+    tagline: "Visual Content & Marketing Collateral",
+    proficiency: "Core Tool",
+    description: "Fast-turnaround visual design platform for social media marketing kits, presentation slide decks, promotional banners, and commercial visual collateral."
   },
   {
     id: "figma",

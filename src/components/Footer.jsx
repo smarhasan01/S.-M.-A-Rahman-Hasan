@@ -40,12 +40,12 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 sm:gap-3.5">
               <img
                 src={personalInfo.logoImage}
-                alt="S. M. A RAHMAN HASAN"
+                alt="S M A RAHMAN HASAN"
                 className="h-8 sm:h-9 md:h-10 w-auto object-contain"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
               <span className="font-heading font-bold text-sm sm:text-base md:text-lg tracking-wider text-white uppercase whitespace-nowrap">
-                S. M. A RAHMAN HASAN
+                S M A RAHMAN HASAN
               </span>
             </div>
 
@@ -108,7 +108,7 @@ export default function Footer() {
         {/* Bottom Copyright & Back-to-top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
           <div>
-            &copy; {new Date().getFullYear()} S. M. A RAHMAN HASAN. All rights reserved.
+            &copy; {new Date().getFullYear()} S M A RAHMAN HASAN. All rights reserved.
           </div>
 
           <button

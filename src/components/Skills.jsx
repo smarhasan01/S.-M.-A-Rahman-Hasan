@@ -105,7 +105,7 @@ export default function Skills() {
                         <Check className="w-3.5 h-3.5 text-emerald-400" />
                         <span>Applied & Active</span>
                       </span>
-                      <span>SMRH Portfolio</span>
+                      <span>S M A RAHMAN HASAN</span>
                     </div>
 
                   </div>

@@ -20,8 +20,8 @@ Built with **React**, **Vite**, and **Tailwind CSS**, closely inspired by the da
   - Three modern cards for **Graphic Design**, **UI/UX Design**, and **Brand Identity** with features checklist and hover glow effects.
 - **Design Tools Ecosystem**:
   - Recreates the iconic connected node constellation from the reference design.
-  - Interactive tool nodes for **Adobe Photoshop**, **Adobe Illustrator**, **Figma**, and **Adobe XD**.
-  - Curved glowing fiber-optic SVG paths connecting to the glowing central **SMRH** orb.
+  - Interactive tool nodes for **Adobe Photoshop**, **Adobe Illustrator**, **Canva**, **Figma**, and **Adobe XD**.
+  - Curved glowing fiber-optic SVG paths connecting to the glowing central **SMA** brand orb with dynamic Graphic Design / UI & UX orbit nodes.
 - **Skills with Interactive Customizer**:
   - Categorized under "Design Core" and "Product & Systems".
   - Animated gradient progress bars.
@@ -38,7 +38,7 @@ Built with **React**, **Vite**, and **Tailwind CSS**, closely inspired by the da
   - Celebratory confetti feedback upon submission.
   - 1-click email copy to clipboard with instant feedback.
 - **Footer**:
-  - SMRH branding, quick navigation links, social platform handles, and smooth back-to-top button.
+  - S M A RAHMAN HASAN branding, quick navigation links, social platform handles, and smooth back-to-top button.
 
 ---
 
@@ -89,7 +89,7 @@ Open `src/data/portfolioData.js` and modify `personalInfo`:
 
 ### 2. Update Profile Photo & Logo
 - Profile photo: Replace `public/profile_hex.png` with your portrait image.
-- Logo: Replace `public/smrh_logo.png` with your custom logo mark.
+- Logo: Replace `public/images/hasan-logo.png.png` with your custom logo mark.
 
 ### 3. Add or Modify Portfolio Projects
 Edit the `portfolioProjects` array in `src/data/portfolioData.js`. You can add new projects, update categories, add deliverables, or change preview images.

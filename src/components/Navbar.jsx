@@ -72,7 +72,7 @@ export default function Navbar({ activeSection, onSectionChange }) {
             <div className="relative flex items-center">
               <img
                 src={personalInfo.logoImage}
-                alt="S. M. A RAHMAN HASAN"
+                alt="S M A RAHMAN HASAN"
                 className="h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -80,7 +80,7 @@ export default function Navbar({ activeSection, onSectionChange }) {
               />
             </div>
             <span className="font-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg tracking-wider text-white group-hover:text-brand-purple transition-colors duration-300 whitespace-nowrap uppercase">
-              S. M. A RAHMAN HASAN
+              S M A RAHMAN HASAN
             </span>
           </a>
 
