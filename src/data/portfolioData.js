@@ -13,6 +13,7 @@ export const personalInfo = {
   shortIntro: "I am a creative designer specializing in graphic design and UI/UX design. I have experience in branding, print design, digital graphics, website UI design, and team leadership. I am also experienced in training students in graphic design and managing document preparation workflows. I enjoy exploring new design trends, solving design challenges, and creating visually appealing, user-friendly, and meaningful design solutions.",
   location: "Bangladesh",
   email: "smarhasan.01@gmail.com",
+  mailto: "mailto:smarhasan.01@gmail.com",
   mailtoLink: "mailto:smarhasan.01@gmail.com",
   profileImage: "/my-photo.jpg",
   profileImageFallback: "/my-photo.jpg",

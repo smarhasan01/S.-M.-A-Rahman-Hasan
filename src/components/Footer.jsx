@@ -92,7 +92,7 @@ export default function Footer() {
                 <a
                   key={s.name}
                   href={s.url}
-                  target="_blank"
+                  target={s.url.startsWith('mailto:') ? '_self' : '_blank'}
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center justify-between group"
                 >
