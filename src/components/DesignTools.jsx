@@ -4,37 +4,27 @@ import { Cpu } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 
-// Official Canva Brand Vector (authentic Canva gradient disc with calligraphic script 'C')
-const CanvaOfficialLogo = ({ className = "w-8 h-8 sm:w-9 sm:h-9" }) => (
+// Authentic Canva Vector Brand Mark (Simple Icons standard)
+const CanvaIcon = ({ className = "w-8 h-8" }) => (
   <svg
-    viewBox="0 0 64 64"
-    className={`${className} relative z-10 transition-transform duration-300 drop-shadow`}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label="Official Canva Logo"
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-label="Canva Logo"
   >
-    <defs>
-      <linearGradient id="canvaOfficialBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#00C4CC" />
-        <stop offset="50%" stopColor="#00B4D8" />
-        <stop offset="100%" stopColor="#7D2AE8" />
-      </linearGradient>
-    </defs>
-    <circle cx="32" cy="32" r="30" fill="url(#canvaOfficialBrandGrad)" />
-    <path
-      fill="#FFFFFF"
-      d="M45.6,43.1c-1.7,2.3-3.9,4.7-6.8,6.5c-2.8,1.8-6,3.2-9.8,3.2c-3.5,0-6.4-1.8-8-3.3c-2.4-2.3-3.7-5.6-4.1-8.7 c-1.2-9.6,4.7-22.3,13.8-27.8c2.1-1.3,4.4-1.9,6.6-1.9c4.4,0,7.7,3.1,8.1,6.9c0.4,3.4-0.9,6.3-4.7,8.2c-1.9,1-2.9,0.9-3.2,0.5 c-0.2-0.3-0.1-0.8,0.3-1.1c3.5-2.9,3.6-5.3,3.2-8.7c-0.3-2.2-1.7-3.6-3.3-3.6c-6.9,0-16.9,15.5-15.5,26.7c0.5,4.4,3.2,9.5,8.8,9.5 c1.8,0,3.8-0.5,5.5-1.4c3.9-2,5.6-3.4,7.9-6.6c0.3-0.4,0.6-0.9,0.9-1.3c0.2-0.4,0.6-0.5,0.9-0.5c0.3,0,0.7,0.3,0.7,0.8 c0,0.3-0.1,0.9-0.5,1.4C46.3,42.1,46,42.7,45.6,43.1L45.6,43.1z"
-    />
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12S18.627 0 12 0M6.962 7.68c.754 0 1.337.549 1.405 1.2c.069.583-.171 1.097-.822 1.406c-.343.171-.48.172-.549.069c-.034-.069 0-.137.069-.206c.617-.514.617-.926.548-1.508c-.034-.378-.308-.618-.583-.618c-1.2 0-2.914 2.674-2.674 4.629c.103.754.549 1.646 1.509 1.646c.308 0 .65-.103.96-.24c.5-.264.799-.47 1.097-.8c-.073-.885.704-2.046 1.851-2.046c.515 0 .926.205.96.583c.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378c-.035-.206-.24-.274-.446-.274c-.72 0-1.131.994-1.029 1.611c.035.275.172.549.447.549c.205 0 .514-.31.617-.755c.068-.308.343-.514.583-.514c.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651c0 .069.034.171.17.171c.092 0 .436-.18.777-.459c.117-.59.253-1.298.253-1.357c.034-.24.137-.48.617-.48c.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994c.172 0 .309.102.309.274c0 .103 0 .274-.069.446c-.137.377-.309.96-.412 1.474c0 .137.035.274.207.274s.685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202c0-.411.035-.754.104-.994c.068-.274.411-.514.617-.514c.103 0 .205.069.205.171c0 .035 0 .103-.034.137c-.137.446-.24.857-.24 1.269c0 .24.034.582.102.788c0 .034.035.069.07.069c.068 0 .548-.445.89-1.028c-.308-.206-.48-.549-.48-.96c0-.72.446-1.097.858-1.097c.343 0 .617.24.617.72c0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24a.3.3 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74c.48 0 .924.205.959.582c.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172s.309-.068.274-.376c-.034-.206-.24-.275-.446-.275c-.686 0-1.13.891-1.028 1.611c.034.275.171.583.445.583c.206 0 .515-.308.652-.754c.068-.274.343-.514.583-.514c.103 0 .17.034.205.171c0 .069 0 .206-.137.652c-.17.308-.171.48-.137.617c.034.274.171.48.309.583c.034.034.068.102.068.102c0 .069-.034.138-.137.138c-.034 0-.411-.205-.823-.515c-.274-.206-.548-.411-.788-.411c-.308 0-.583.205-.685.548c-.137.48-.309.995-.446 1.475c-.103.377-.309.72-.617.96c-.412.309-.926.48-1.44 0c-.514-.446-.72-1.166-.994-1.783c-.069-.171-.206-.274-.377-.274c-.206 0-.343.137-.412.308c-.24.618-.583 1.235-1.028 1.749c-.48.515-1.098.858-1.75 1.029c-.72.171-1.474.205-2.228.103c-1.303-.172-2.503-.857-3.326-1.886c-.823-1.029-1.27-2.366-1.234-3.703c.068-2.47 1.817-4.664 3.703-6.07c.583-.445 1.234-.822 1.885-1.2a14.7 14.7 0 0 1 1.098-.583c.24-.103.377-.377.343-.651c-.035-.309-.309-.515-.618-.48c-.686.068-1.372.24-2.023.514c-.651.274-1.268.617-1.851 1.029c-1.2 0-2.366.617-3.051 1.611c-.343.48-.549 1.063-.583 1.68c-.034.617.137 1.234.48 1.748c.343.514.857.892 1.44 1.132c.583.24 1.2.343 1.852.308c.514-.034.994-.205 1.405-.514c.412-.309.72-.754.892-1.235c.171-.48.205-1.028.068-1.543c-.137-.514-.445-.96-.857-1.269c-.412-.309-.926-.48-1.44-.48z" />
   </svg>
 );
 
 export default function DesignTools() {
   const [selectedTool, setSelectedTool] = useState(designTools[0]);
 
-  // Both categories remain visible simultaneously
-  // Active highlight state corresponds to the selected tool's discipline
-  const isGdActive = ['photoshop', 'illustrator', 'canva'].includes(selectedTool.id);
-  const isUiUxActive = ['figma', 'adobexd'].includes(selectedTool.id);
+  // Dynamic Orbit Labels:
+  // Figma & Adobe XD -> UI & UX
+  // Photoshop, Illustrator & Canva -> Graphic Design / GD
+  const isUiUx = selectedTool.id === 'figma' || selectedTool.id === 'adobexd';
+  const orbitNode1 = isUiUx ? 'UI' : 'Graphic';
+  const orbitNode2 = isUiUx ? 'UX' : 'Design';
 
   return (
     <section id="tools" className="py-24 relative overflow-hidden scroll-mt-24">
@@ -73,84 +63,48 @@ export default function DesignTools() {
                     key={tool.id}
                     onClick={() => setSelectedTool(tool)}
                     aria-label={`Select ${tool.name}`}
-                    className={`group relative flex flex-col items-center p-3 sm:p-4 rounded-2xl transition-all duration-300 ease-out transform-gpu cursor-pointer select-none ${
+                    className={`group relative flex flex-col items-center p-3 sm:p-4 rounded-2xl transition-all duration-300 transform-gpu ${
                       isSelected
-                        ? 'scale-110 shadow-2xl bg-[#1e1e28] ring-2 ring-offset-2 ring-offset-[#171719]'
+                        ? 'scale-110 shadow-2xl bg-[#1e1e28]'
                         : 'hover:scale-105 bg-[#17171f]/80 hover:bg-[#1c1c24]'
                     } border`}
                     style={{
                       borderColor: isSelected ? tool.color : 'rgba(255, 255, 255, 0.08)',
-                      boxShadow: isSelected
-                        ? `0 0 32px -4px ${tool.color}80, 0 8px 24px -4px rgba(0,0,0,0.6)`
-                        : undefined,
-                      ringColor: isSelected ? `${tool.color}70` : undefined,
+                      boxShadow: isSelected ? `0 0 25px -5px ${tool.color}70` : undefined,
                     }}
                   >
-                    {/* Soft pulsing ambient glow behind active card */}
-                    {isSelected && (
-                      <div
-                        className="absolute -inset-1 rounded-2xl opacity-40 blur-md pointer-events-none transition-opacity duration-300 animate-pulse-slow"
-                        style={{ background: tool.color }}
-                      />
-                    )}
-
                     {/* Tool Icon Box */}
                     <div
-                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center font-display font-black text-xl transition-all duration-300 shadow-inner relative overflow-hidden ${
-                        isSelected ? 'scale-105' : 'group-hover:scale-105'
-                      }`}
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center font-display font-black text-xl transition-transform duration-300 group-hover:scale-105 shadow-inner relative overflow-hidden"
                       style={{
-                        background: isSelected
-                          ? `linear-gradient(135deg, ${tool.color}40, #161622)`
-                          : `linear-gradient(135deg, ${tool.color}25, #131317)`,
+                        background: `linear-gradient(135deg, ${tool.color}30, #131317)`,
                         color: tool.color,
-                        border: isSelected
-                          ? `2px solid ${tool.color}`
-                          : `1.5px solid ${tool.color}50`,
-                        boxShadow: isSelected
-                          ? `inset 0 0 16px ${tool.color}35, 0 0 20px ${tool.color}40`
-                          : undefined,
+                        border: `1.5px solid ${tool.color}60`,
                       }}
                     >
                       {tool.id === 'canva' ? (
-                        <CanvaOfficialLogo className="w-8 h-8 sm:w-9 sm:h-9" />
+                        <CanvaIcon className="w-7 h-7 sm:w-8 sm:h-8 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                       ) : (
-                        <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                          {tool.abbr}
-                        </span>
+                        <span className="relative z-10">{tool.abbr}</span>
                       )}
                       <div
-                        className="absolute inset-0 opacity-20 blur-sm pointer-events-none"
+                        className="absolute inset-0 opacity-20 blur-sm"
                         style={{ background: tool.color }}
                       />
                     </div>
 
                     {/* Tool Name Label */}
-                    <span
-                      className={`text-xs font-semibold mt-2.5 text-center transition-colors duration-200 ${
-                        isSelected ? 'text-white font-bold' : 'text-zinc-300 group-hover:text-white'
-                      }`}
-                    >
+                    <span className="text-xs font-semibold text-zinc-300 mt-2.5 text-center group-hover:text-white transition-colors">
                       {tool.name.replace('Adobe ', '')}
                     </span>
                     
                     {/* Active Indicator dot */}
-                    <div className="h-2 flex items-center justify-center mt-1.5">
-                      {isSelected ? (
-                        <div className="flex items-center gap-1 animate-fadeIn">
-                          <span
-                            className="w-1.5 h-1.5 rounded-full animate-ping"
-                            style={{ background: tool.color }}
-                          />
-                          <span
-                            className="w-1.5 h-1.5 rounded-full shadow-[0_0_8px]"
-                            style={{ background: tool.color, color: tool.color }}
-                          />
-                        </div>
-                      ) : (
-                        <div className="w-1 h-1 rounded-full bg-white/10 group-hover:bg-white/30 transition-colors" />
-                      )}
-                    </div>
+                    {isSelected && (
+                      <div
+                        className="w-1.5 h-1.5 rounded-full mt-1 animate-ping"
+                        style={{ background: tool.color }}
+                      />
+                    )}
                   </button>
                 );
               })}
@@ -187,7 +141,7 @@ export default function DesignTools() {
                   d="M 130,20 C 180,100 340,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'photoshop' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'photoshop' ? '3' : '1.2'}
+                  strokeWidth={selectedTool.id === 'photoshop' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -195,7 +149,7 @@ export default function DesignTools() {
                   d="M 265,20 C 300,100 370,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'illustrator' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'illustrator' ? '3' : '1.2'}
+                  strokeWidth={selectedTool.id === 'illustrator' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -203,7 +157,7 @@ export default function DesignTools() {
                   d="M 400,20 C 400,80 400,140 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'canva' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'canva' ? '3' : '1.2'}
+                  strokeWidth={selectedTool.id === 'canva' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -211,7 +165,7 @@ export default function DesignTools() {
                   d="M 535,20 C 500,100 430,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'figma' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'figma' ? '3' : '1.2'}
+                  strokeWidth={selectedTool.id === 'figma' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -219,7 +173,7 @@ export default function DesignTools() {
                   d="M 670,20 C 620,100 460,150 400,200"
                   fill="none"
                   stroke={selectedTool.id === 'adobexd' ? selectedTool.color : 'url(#fiberGrad)'}
-                  strokeWidth={selectedTool.id === 'adobexd' ? '3' : '1.2'}
+                  strokeWidth={selectedTool.id === 'adobexd' ? '2.8' : '1.2'}
                   filter="url(#glow)"
                   className="transition-all duration-500"
                 />
@@ -250,47 +204,20 @@ export default function DesignTools() {
                     <div className="w-8 h-0.5 bg-indigo-400/60 rounded-full mt-1" />
                   </div>
 
-                  {/* Orbiting Category Node 1: Graphic Design (GD) */}
+                  {/* Orbiting Tech Node 1 */}
                   <div
-                    key={`orbit-gd-${selectedTool.id}`}
-                    className={`absolute -top-3.5 -right-4 sm:-right-8 px-3 sm:px-3.5 py-1.5 rounded-full border flex items-center gap-1.5 shadow-xl transition-all duration-300 animate-float animate-orbit-entrance select-none ${
-                      isGdActive
-                        ? 'bg-gradient-to-r from-[#441875] to-[#6d28d9] border-purple-400 text-white shadow-[0_0_24px_rgba(168,85,247,0.7)] scale-105 ring-1 ring-purple-400/60'
-                        : 'bg-[#181824]/95 border-purple-500/30 text-purple-200/80 hover:border-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.2)]'
-                    }`}
-                    style={{ animationDuration: '4s' }}
-                    title="Graphic Design (GD)"
+                    className="absolute -top-3 -right-3 min-w-[32px] sm:min-w-[36px] h-7 sm:h-8 px-2.5 rounded-full bg-[#1b1b22] border border-brand-purple/50 flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold text-indigo-300 shadow animate-float transform-gpu will-change-transform select-none transition-all duration-300"
+                    title={isUiUx ? "User Interface (UI)" : "Graphic Design"}
                   >
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                        isGdActive ? 'bg-purple-300 animate-ping' : 'bg-purple-400/60'
-                      }`}
-                    />
-                    <span className="font-mono font-bold text-[10px] sm:text-xs tracking-wider whitespace-nowrap">
-                      <span className="hidden sm:inline">Graphic Design (GD)</span>
-                      <span className="sm:hidden">GD</span>
-                    </span>
+                    {orbitNode1}
                   </div>
 
-                  {/* Orbiting Category Node 2: UI & UX */}
+                  {/* Orbiting Tech Node 2 */}
                   <div
-                    key={`orbit-uiux-${selectedTool.id}`}
-                    className={`absolute -bottom-3.5 -left-4 sm:-left-8 px-3 sm:px-3.5 py-1.5 rounded-full border flex items-center gap-1.5 shadow-xl transition-all duration-300 animate-float-slow animate-orbit-entrance select-none ${
-                      isUiUxActive
-                        ? 'bg-gradient-to-r from-[#0c395c] to-[#0284c7] border-cyan-400 text-white shadow-[0_0_24px_rgba(56,189,248,0.7)] scale-105 ring-1 ring-cyan-400/60'
-                        : 'bg-[#181824]/95 border-cyan-500/30 text-cyan-200/80 hover:border-cyan-400 shadow-[0_0_12px_rgba(56,189,248,0.2)]'
-                    }`}
-                    style={{ animationDuration: '5.5s' }}
-                    title="UI & UX"
+                    className="absolute -bottom-2 -left-3 min-w-[32px] sm:min-w-[36px] h-7 sm:h-8 px-2.5 rounded-full bg-[#1b1b22] border border-blue-400/50 flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold text-cyan-300 shadow animate-float-slow transform-gpu will-change-transform select-none transition-all duration-300"
+                    title={isUiUx ? "User Experience (UX)" : "Graphic Design"}
                   >
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                        isUiUxActive ? 'bg-cyan-300 animate-ping' : 'bg-cyan-400/60'
-                      }`}
-                    />
-                    <span className="font-mono font-bold text-[10px] sm:text-xs tracking-wider whitespace-nowrap">
-                      UI & UX
-                    </span>
+                    {orbitNode2}
                   </div>
                 </div>
               </div>
@@ -298,47 +225,31 @@ export default function DesignTools() {
             </div>
           </ScrollReveal>
 
-          {/* Selected Tool Details Card with 3D Tilt & Smooth Entrance */}
+          {/* Selected Tool Details Card with 3D Tilt */}
           <ScrollReveal direction="up" delay={450}>
             <div className="mt-8 max-w-xl mx-auto">
               <TiltCard maxTilt={5} scale={1.01} className="rounded-2xl">
-                <div
-                  key={selectedTool.id}
-                  className="p-6 rounded-2xl bg-[#1b1b22]/95 border shadow-2xl transition-all duration-300 text-left animate-card-appear transform-gpu"
-                  style={{
-                    borderColor: `${selectedTool.color}50`,
-                    boxShadow: `0 14px 35px -8px ${selectedTool.color}30, 0 4px 16px rgba(0,0,0,0.5)`,
-                  }}
-                >
+                <div className="p-6 rounded-2xl bg-[#1b1b22]/90 border border-white/10 shadow-xl transition-all duration-300 text-left">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-base shadow transition-transform duration-300"
+                        className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base shadow"
                         style={{
                           backgroundColor: `${selectedTool.color}20`,
                           borderColor: `${selectedTool.color}50`,
-                          borderWidth: '1.5px',
+                          borderWidth: '1px',
                           color: selectedTool.color,
-                          boxShadow: `0 0 15px ${selectedTool.color}30`,
                         }}
                       >
                         {selectedTool.id === 'canva' ? (
-                          <CanvaOfficialLogo className="w-6 h-6" />
+                          <CanvaIcon className="w-5 h-5" />
                         ) : (
                           selectedTool.abbr
                         )}
                       </div>
                       <div>
-                        <h4 className="text-base font-bold text-white flex items-center gap-2">
-                          <span>{selectedTool.name}</span>
-                          <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ background: selectedTool.color }}
-                          />
-                        </h4>
-                        <p className="text-xs font-mono" style={{ color: selectedTool.color }}>
-                          {selectedTool.tagline}
-                        </p>
+                        <h4 className="text-base font-bold text-white">{selectedTool.name}</h4>
+                        <p className="text-xs font-mono" style={{ color: selectedTool.color }}>{selectedTool.tagline}</p>
                       </div>
                     </div>
                     
